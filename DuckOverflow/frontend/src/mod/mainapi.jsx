@@ -4,6 +4,7 @@ import "./mapi.css";
 
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "YOUR_GEMINI_API_KEY";
+
 if (!API_KEY || API_KEY === "YOUR_GEMINI_API_KEY") {
   console.error("Error: Gemini API key not found. Please set VITE_GEMINI_API_KEY environment variable or replace 'YOUR_GEMINI_API_KEY' with your actual key.");
 }
