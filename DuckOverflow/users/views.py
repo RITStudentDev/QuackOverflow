@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import CustomUser
-from .serializers import CustomUserSerializer
+from .serializers import CustomUserSerializer, UserSignupSerializer
 from rest_framework_simplejwt.views import ( TokenObtainPairView, TokenRefreshView )
 
 # custom class to generate and store JWT tokens in cookies
@@ -63,6 +63,14 @@ class CustomTokenRefreshView(TokenRefreshView):
         except:
             return Response({'tokenGenerated':False})
 
+# create new user on signup
+@api_view(['POST'])
+def create_user(request):
+    serializer = UserSignupSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'message': 'User created successfully!'}, status=201)
+    return Response(serializer.errors, status=400)
 
 
 # retrieve user data from user model in database
