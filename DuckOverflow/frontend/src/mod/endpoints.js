@@ -18,7 +18,7 @@ api.incerceptors.response.use(
                 return api(originalRequest);
             } catch (refreshError) {
                 window.location.href = '/login';
-                return Promise.reject(refreshError);
+                return Promise.reject(error);
             }
         }
     }
