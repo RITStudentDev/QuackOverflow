@@ -52,40 +52,42 @@ export default function Signup() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Signup</h2>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h2>Signup</h2>
 
-      <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        value={formData.username}
-        onChange={handleChange}
-        required
-      />
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
 
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-        required
-      />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
 
-      <input
-        type="password"
-        name="password2"
-        placeholder="Confirm Password"
-        value={formData.password2}
-        onChange={handleChange}
-        required
-      />
+        <input
+          type="password"
+          name="password2"
+          placeholder="Confirm Password"
+          value={formData.password2}
+          onChange={handleChange}
+          required
+        />
 
-      <button type="submit">Sign Up</button>
+        <button type="submit">Sign Up</button>
 
-      {error && <p>{error}</p>}
-      {message && <p>{message}</p>}
-    </form>
+        {error && <p>{error}</p>}
+        {message && <p>{message}</p>}
+      </form>
+    </div>
   );
 }
