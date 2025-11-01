@@ -66,6 +66,11 @@ class CustomTokenRefreshView(TokenRefreshView):
 # create new user on signup
 @api_view(['POST'])
 def create_user(request):
+    serializer = UserSignupSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'message': 'User created successfully!'}, status=201)
+    return Response(serializer.errors, status=400)
 
     serializer = UserSignupSerializer(data=request.data)
     if serializer.is_valid():

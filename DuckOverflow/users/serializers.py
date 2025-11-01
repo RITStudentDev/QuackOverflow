@@ -15,19 +15,19 @@ class UserSignupSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True}
         }
-    # checks if username is in use
+
+    # Check if username is already taken
     def validate_username(self, value):
         if CustomUser.objects.filter(username=value).exists():
-            raise serializers.ValidationError('Username is already un use.')
+            raise serializers.ValidationError('Username is already in use.')
         return value
-    
-    # checks if both passwords match
-    def validate_password(self, data):
+
+    # Check if both passwords match
+    def validate(self, data):
         if data['password'] != data['password2']:
             raise serializers.ValidationError({'password2': 'Passwords do not match.'})
         return data
-    
-    
+
     def create(self, validated_data):
         validated_data.pop('password2')
         password = validated_data.pop('password')
