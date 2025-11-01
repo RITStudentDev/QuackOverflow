@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { GoogleGenerativeAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import "./mapi.css";
 
 
@@ -13,10 +13,10 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 async function callGemini(question) {
   const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
   const result = await model.generateContent(question);
-  return result.response;
+  return result.response.text;
 }
 
-export function Gemini() {
+export default function Gemini() {
   const [inputValue, setInputValue] = useState('');
   const [response, setResponse] = useState('');
 
