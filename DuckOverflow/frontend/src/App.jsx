@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from "react-dom";
 import { useState } from 'react'
 import Gemini from './mod/mainapi.jsx'
+import Signup from './components/Signup.jsx';
 
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
@@ -10,6 +11,8 @@ function App() {
     
     <Router>
       <Routes>
+        <Route path="/" element={<HelloWorld/>}/>
+        <Route path="/signup" element={<Signup/>}/>
         <Route path="/" element={<Gemini/>}/>
       </Routes>
     </Router>
