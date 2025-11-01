@@ -72,6 +72,12 @@ def create_user(request):
         return Response({'message': 'User created successfully!'}, status=201)
     return Response(serializer.errors, status=400)
 
+    serializer = UserSignupSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    print(serializer.errors)
+    return Response(serializer.errors, status=400)
 
 # retrieve user data from user model in database
 @api_view(['GET'])

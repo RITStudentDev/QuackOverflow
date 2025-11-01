@@ -10,4 +10,5 @@ urlpatterns = [
     path('token/refresh/', CustomTokenRefreshView.as_view(), name='token_refresh'),
     path('signup/', create_user, name='signup'),
     path('user_data/<str:pk>/', get_user_data),
+    path('signup/', create_user, name='user_signup'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
