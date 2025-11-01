@@ -4,6 +4,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 
-url_patterns = [
+urlpatterns = [
     path('user_data/<str:pk>/', get_user_data),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

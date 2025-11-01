@@ -5,5 +5,5 @@ from _temporaryhome import views as temp_home_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', temp_home_views.render_home),
-    #path('api/', include('users.urls')),
+    path('api/', include('users.urls')),
 ]
