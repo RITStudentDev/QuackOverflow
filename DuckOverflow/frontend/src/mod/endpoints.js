@@ -51,4 +51,9 @@ export const get_posts = async (num) => {
     return response.data
 }
 
+export const get_post = async (id) => {
+    const response = await api.get(`/posts/${id}/`);
+    return response.data;
+}
+
 
