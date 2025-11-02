@@ -1,0 +1,95 @@
+import React, { useState } from "react";
+import '../styles/Signup.css';
+
+export default function Signup() {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    password2: "",
+  });
+
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setMessage("");
+
+    if (formData.password !== formData.password2) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8000/api/signup/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage("User created successfully!");
+        setFormData({ username: "", password: "", password2: "" });
+      } else {
+        const serverError =
+          typeof data === "object"
+            ? Object.values(data).flat().join(" ")
+            : "Signup failed. Please try again.";
+        setError(serverError);
+      }
+    } catch (error) {
+      setError("Error: " + error.message);
+    }
+  };
+
+  return (
+      <form onSubmit={handleSubmit} className="signup-form">
+        <h2 className="signup-title">Sign Up</h2>
+
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={formData.username}
+          onChange={handleChange}
+          required
+          className="signup-input"
+        />
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+          className="signup-input"
+        />
+
+        <input
+          type="password"
+          name="password2"
+          placeholder="Confirm Password"
+          value={formData.password2}
+          onChange={handleChange}
+          required
+          className="signup-input"
+        />
+
+        <button type="submit" className="signup-button">Sign Up</button>
+
+        {error && <p className="signup-error">{error}</p>}
+        {message && <p className="signup-message">{message}</p>}
+      </form>
+  );
+}
