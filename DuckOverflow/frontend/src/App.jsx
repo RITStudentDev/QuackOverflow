@@ -5,6 +5,7 @@ import Gemini from './mod/mainapi.jsx'
 import Signup from './components/Signup.jsx'
 import Login from './components/Login.jsx';
 import QuackOverflow from './components/QuackOverflow.jsx';
+import Questions from './components/Questions.jsx'
 
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 //<Route path="/" element={<HelloWorld/>}/>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/mainapi" element={<Gemini/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/questions" element={<Questions/>}/>
         <Route path="/" element={<QuackOverflow/>}/>
       </Routes>
     </Router>

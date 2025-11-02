@@ -42,7 +42,12 @@ export async function login_user(username, password) {
 }
 
 export const create_post = async (title, question, answer) => {
-    const response = await api.post('create_post/', {title:title, question:question, answer:answer})
+    const response = await api.post('/create_post/', {title:title, question:question, answer:answer})
+    return response.data
+}
+
+export const get_posts = async (num) => {
+    const response = await api.get(`/get_posts/?page=${num}`)
     return response.data
 }
 
