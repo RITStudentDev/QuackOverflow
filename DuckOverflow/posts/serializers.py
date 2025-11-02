@@ -16,5 +16,5 @@ class PostSerializer(serializers.ModelSerializer):
     
     def get_like_count(self, obj):
         return obj.likes.count()
-    def get_formatted_time(self, obj):
+    def get_formatted_date(self, obj):
         return obj.time_created.strftime("%d %b %y")
