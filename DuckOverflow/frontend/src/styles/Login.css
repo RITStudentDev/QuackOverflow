@@ -1,12 +1,4 @@
-body {
-    background: wheat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
-    .signup-form {
+.login-container {
     background: #FBFBFB;
     padding: 2rem 2.5rem;
     border-radius: 12px;
@@ -14,16 +6,9 @@ body {
     width: 100%;
     max-width: 400px;
     text-align: center;
-  }
-  
-  
-  .signup-title {
-    margin-bottom: 1.5rem;
-    color: black;
-  }
-  
-  
-  .signup-input {
+}
+
+.login-input {
     width: 80%;
     padding: 0.75rem 1rem;
     text-align: center;
@@ -34,16 +19,14 @@ body {
     font-size: 1rem;
     transition: all 0.2s;
     background-color: #060708;
-  }
-  
-  .signup-input:focus {
-    border-color: #4a90e2;
-    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
-    outline: none;
-  }
-  
-  
-  .signup-button {
+}
+
+.login-title {
+    margin-bottom: 1.5rem;
+    color: black;
+}
+
+.login-button {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     width: 100%;
@@ -55,20 +38,8 @@ body {
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.2s;
-  }
-  
-  .signup-button:hover {
+}
+
+.login-button:hover {
     background: #25B2D9;
   }
-  
-  
-  .signup-error {
-    color: red;
-    margin-top: 1rem;
-  }
-  
-  .signup-message {
-    color: green;
-    margin-top: 1rem;
-  }
-  
