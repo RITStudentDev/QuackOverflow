@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { get_posts } from "../mod/endpoints";
+import { useNavigate } from "react-router-dom";
 
 export default function Questions() {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [nextPage, setNextPage] = useState(1)
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadPosts = async () => {
@@ -28,7 +30,7 @@ export default function Questions() {
             {loading ? (
                 <h2>Loading...</h2>
             ) : posts.length > 0 ? (
-                posts.map((post) => <h2 key={post.id}>{post.title}</h2>)
+                posts.map((post) => <h2 key={post.id} onClick={() => navigate(`/post/${post.id}`)}>{post.title}</h2>)
             ) : (
                 <h2>No posts found</h2>
             )}

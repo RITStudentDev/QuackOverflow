@@ -58,3 +58,14 @@ def get_posts(request):
 
 
     return paginator.get_paginated_response(data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_post(request, pk):
+    try:
+        post = Post.objects.get(id=pk)
+        serializer = PostSerializer(post, many=False)
+        return Response(serializer.data)
+    except Post.DoesNotExist:
+        return Response({'error': 'Post not found'}, status=404)
