@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'http://localhost:8000/api';
 
 const api = axios.create({
-    BaseURL : API_BASE_URL,
+    baseURL : API_BASE_URL,
     withCredentials: true,
 })
 
-api.incerceptors.response.use(
+api.interceptors.response.use(
     (response) => response,
     async error => {
         const originalRequest = error.config;
@@ -24,17 +24,21 @@ api.incerceptors.response.use(
     }
 )
 
+
+
 export const get_user_data = async (username) => {
-    const response = await api.get(`/user_data${username}/`);
+    const response = await api.get(`/user_data/${username}/`);
     return response.data;
 }
 
 export const refresh_token = async () => {
-    const response = await api.post('/login/refresh/');
+    const response = await api.post('/token/refresh/');
     return response.data;
 }
 
-export const login = async (username, password) => {
-    const response = await api.post('/token/');
-    return response.data;
+export async function login_user(username, password) {
+  const response = await api.post('/token/', {username, password});
+  return response.data;
 }
+
+
