@@ -1,16 +1,13 @@
-/* Container centers form on page */
-.signup-container {
+body {
+    background: wheat;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #f5f7fa;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  /* Form box */
-  .signup-form {
-    background: #fff;
+    margin: 0;
+}
+    .signup-form {
+    background: #FBFBFB;
     padding: 2rem 2.5rem;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -19,21 +16,24 @@
     text-align: center;
   }
   
-  /* Form title */
+  
   .signup-title {
     margin-bottom: 1.5rem;
-    color: #333;
+    color: black;
   }
   
-  /* Inputs */
+  
   .signup-input {
-    width: 100%;
+    width: 80%;
     padding: 0.75rem 1rem;
+    text-align: center;
+    margin: 0 auto;
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid white;
     border-radius: 8px;
     font-size: 1rem;
     transition: all 0.2s;
+    background-color: #060708;
   }
   
   .signup-input:focus {
@@ -42,11 +42,13 @@
     outline: none;
   }
   
-  /* Button */
+  
   .signup-button {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     width: 100%;
     padding: 0.75rem 1rem;
-    background: #4a90e2;
+    background: #23B9E0; /* like the coms color */
     color: white;
     border: none;
     border-radius: 8px;
@@ -59,14 +61,14 @@
     background: #357abd;
   }
   
-  /* Messages */
+  
   .signup-error {
-    color: #e74c3c;
+    color: red;
     margin-top: 1rem;
   }
   
   .signup-message {
-    color: #2ecc71;
+    color: green;
     margin-top: 1rem;
   }
   

@@ -52,9 +52,8 @@ export default function Signup() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Signup</h2>
+      <form onSubmit={handleSubmit} className="signup-form">
+        <h2 className="signup-title">Sign Up</h2>
 
         <input
           type="text"
@@ -63,6 +62,7 @@ export default function Signup() {
           value={formData.username}
           onChange={handleChange}
           required
+          className="signup-input"
         />
 
         <input
@@ -72,6 +72,7 @@ export default function Signup() {
           value={formData.password}
           onChange={handleChange}
           required
+          className="signup-input"
         />
 
         <input
@@ -81,13 +82,13 @@ export default function Signup() {
           value={formData.password2}
           onChange={handleChange}
           required
+          className="signup-input"
         />
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="signup-button">Sign Up</button>
 
-        {error && <p>{error}</p>}
-        {message && <p>{message}</p>}
+        {error && <p className="signup-error">{error}</p>}
+        {message && <p className="signup-message">{message}</p>}
       </form>
-    </div>
   );
 }
