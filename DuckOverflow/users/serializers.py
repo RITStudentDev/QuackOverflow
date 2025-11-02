@@ -35,3 +35,4 @@ class UserSignupSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+    
