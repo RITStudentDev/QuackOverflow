@@ -48,10 +48,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'DuckOverflow.urls'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATIC_URL = '/static/'
+
+STATIC_URL = "/static/"
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "frontend_build", "assets"),
+    os.path.join(BASE_DIR, "frontend_build"),
 ]
 
 TEMPLATES = [
@@ -106,11 +110,13 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5173",
-    "http://localhost:5173",
-
+    "http://127.0.0.1:5173", 
+    "http://localhost:5173", #5173 is for local testing
+    "https://duckoverflow.tech",
 ]
-
+CSRF_TRUSTED_ORIGINS = ["https://duckoverflow.tech"]
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 CORS_ALLOW_CREDENTIALS = True
 
 AUTH_USER_MODEL = 'users.CustomUser'

@@ -2,6 +2,23 @@ import React, { useState } from "react";
 import {useNavigate} from "react-router-dom";
 import '../styles/Signup.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(name + "=")) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -21,23 +38,25 @@ export default function Signup() {
     e.preventDefault();
     setError("");
     setMessage("");
-
+  
     if (formData.password !== formData.password2) {
       setError("Passwords do not match");
       return;
     }
-
+  
     try {
-      const response = await fetch("http://localhost:8000/api/signup/", {
+      const response = await fetch(`${API_URL}/api/signup/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-CSRFToken": getCookie("csrftoken")
         },
+        credentials: "include",
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
         setMessage("User created successfully!");
         setFormData({ username: "", password: "", password2: "" });

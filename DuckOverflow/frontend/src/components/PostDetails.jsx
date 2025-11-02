@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { get_post } from "../mod/endpoints";
-import Post from "./post";
+import Post from "./Post";
 import '../styles/PostDetails.css'
 
 export default function PostDetails() {
