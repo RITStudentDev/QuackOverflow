@@ -15,8 +15,15 @@ export default function QuackOverflow()
   return (
     <main className="Quack">
         <div className='image'> 
-            <h1 className ="greeting">Welcome to DuckOverflow!</h1>
-            <button className = 'qButton' onClick={duckSoundClick}>Quack!</button>
+
+            <h1 className ="mainmsg">
+              Welcome To <span class="highlight">DuckOverflow!</span>
+            </h1>
+
+            <button className = 'qButton' onClick={duckSoundClick}>
+              QUACK!
+            </button>
+
         </div>
     </main>
   );
