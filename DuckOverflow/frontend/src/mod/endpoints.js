@@ -47,8 +47,13 @@ export const create_post = async (title, question, answer) => {
 }
 
 export const get_posts = async (num) => {
-    const response = await api.get(`/get_posts/?page=${num}`)
+    const response = await api.get(`/posts/?page=${num}`)
     return response.data
+}
+
+export const get_post = async (id) => {
+    const response = await api.get(`/posts/${id}/`);
+    return response.data;
 }
 
 

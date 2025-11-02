@@ -1,42 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { get_posts } from "../mod/endpoints";
+import { useNavigate } from "react-router-dom";
 
-export default function Questions(){
-
+export default function Questions() {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [nextPage, setNextPage] = useState(1)
-
-    const fetchData = async () => {
-        const posts = await get_posts(nextPage)
-        setPosts(posts.results)
-    }
+    const navigate = useNavigate();
 
     useEffect(() => {
-        try {
-            fetchData()
-        } catch {
-            alert('error getting posts')
-        } finally {
-            setLoading(false)
+        const loadPosts = async () => {
+            try {
+                const data = await get_posts(nextPage)
+                setPosts(data.results || [])
+            } catch (err) {
+                console.error('Error getting posts:', err)
+                alert('Error getting posts')
+            } finally {
+                setLoading(false)
+            }
         }
-    })
+
+        loadPosts()
+    }, [nextPage])
+
     return (
         <div className="questions-page">
             <h1>Questions</h1>
-            {
-                loading?
-                    <h2>Loading...</h2>
-                :
-                    posts ? 
-                        posts.map((post) =>{
-                            return <h2>{post.title}</h2>
-                        })
-                    :
-                    <></>
-
-
-            }
+            {loading ? (
+                <h2>Loading...</h2>
+            ) : posts.length > 0 ? (
+                posts.map((post) => <h2 key={post.id} onClick={() => navigate(`/post/${post.id}`)}>{post.title}</h2>)
+            ) : (
+                <h2>No posts found</h2>
+            )}
         </div>
     )
 }

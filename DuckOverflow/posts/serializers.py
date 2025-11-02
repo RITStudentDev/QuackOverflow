@@ -9,7 +9,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['username', 'title', 'formatted_date', 'question', 'answer', 'likes', 'like_count']
+        fields = ['id','username', 'title', 'formatted_date', 'question', 'answer', 'likes', 'like_count']
 
     def get_username(self, obj):
         return obj.user.username

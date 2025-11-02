@@ -46,7 +46,6 @@ def get_posts(request):
     
     paginator = PageNumberPagination()
     paginator.page_size = 16
-
     compiled_page = paginator.paginate_queryset(posts, request)
     serializer = PostSerializer(compiled_page,many=True)
 
@@ -59,3 +58,14 @@ def get_posts(request):
 
 
     return paginator.get_paginated_response(data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_post(request, pk):
+    try:
+        post = Post.objects.get(id=pk)
+        serializer = PostSerializer(post, many=False)
+        return Response(serializer.data)
+    except Post.DoesNotExist:
+        return Response({'error': 'Post not found'}, status=404)
