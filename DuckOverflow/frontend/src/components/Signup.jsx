@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../styles/Signup.css';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -52,40 +53,43 @@ export default function Signup() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Signup</h2>
+      <form onSubmit={handleSubmit} className="signup-form">
+        <h2 className="signup-title">Sign Up</h2>
 
-      <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        value={formData.username}
-        onChange={handleChange}
-        required
-      />
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={formData.username}
+          onChange={handleChange}
+          required
+          className="signup-input"
+        />
 
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-        required
-      />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+          className="signup-input"
+        />
 
-      <input
-        type="password"
-        name="password2"
-        placeholder="Confirm Password"
-        value={formData.password2}
-        onChange={handleChange}
-        required
-      />
+        <input
+          type="password"
+          name="password2"
+          placeholder="Confirm Password"
+          value={formData.password2}
+          onChange={handleChange}
+          required
+          className="signup-input"
+        />
 
-      <button type="submit">Sign Up</button>
+        <button type="submit" className="signup-button">Sign Up</button>
 
-      {error && <p>{error}</p>}
-      {message && <p>{message}</p>}
-    </form>
+        {error && <p className="signup-error">{error}</p>}
+        {message && <p className="signup-message">{message}</p>}
+      </form>
   );
 }
