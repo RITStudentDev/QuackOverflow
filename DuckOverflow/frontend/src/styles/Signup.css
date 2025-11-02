@@ -1,5 +1,6 @@
 
     .signup-form {
+    margin-left: 33.5vw;
     background: #FBFBFB;
     padding: 2rem 2.5rem;
     border-radius: 12px;
@@ -65,3 +66,7 @@
     margin-top: 1rem;
   }
   
+  .login-redirect-button {
+    margin-top: 50px;
+    margin-left: 42.5vw;
+  }
