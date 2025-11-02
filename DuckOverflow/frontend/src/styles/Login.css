@@ -31,7 +31,7 @@
     margin-bottom: 0.5rem;
     width: 100%;
     padding: 0.75rem 1rem;
-    background: #23B9E0; /* like the coms color */
+    background: #30c3f0; /* like the coms color */
     color: white;
     border: none;
     border-radius: 8px;
@@ -39,3 +39,7 @@
     cursor: pointer;
     transition: all 0.2s;
 }
+
+.login-button:hover {
+    background: #25B2D9;
+  }
