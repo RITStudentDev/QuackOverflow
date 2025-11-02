@@ -21,7 +21,7 @@ export default function QuackOverflow()
             </h1>
 
             <button className = 'qButton' onClick={duckSoundClick}>
-              Quack!
+              QUACK!
             </button>
 
         </div>
