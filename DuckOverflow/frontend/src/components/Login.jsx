@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import { login_user } from "../mod/endpoints";
+import '../styles/Login.css';
 
 export default function Login() {
     const [username, setUsername] = useState('');
@@ -20,20 +21,25 @@ export default function Login() {
 
     return (
         <div className="login-container">
-            <input 
-            className="username-input"
-            placeholder="username"
-            onChange={(e) => setUsername(e.target.value)}
-            ></input>
-            <input 
-            className="password-input"
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
-            ></input>
-            <button 
-            className="login-button"
-            onClick={handleLogin}
-            >Login</button>
+            
+            <h2 className="login-title">Login</h2>
+
+            <input
+                className="login-input"
+                placeholder="username"
+                onChange={(e) => setUsername(e.target.value)}
+            />
+
+            <input
+                className="login-input"
+                placeholder="password"
+                onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <button className="login-button" onClick={handleLogin}>
+                Login
+            </button>
+
         </div>
     )
 
