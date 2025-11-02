@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import "./mapi.css";
+import quackSound from '../assets/quack.mp3';
 
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "YOUR_GEMINI_API_KEY";
@@ -53,14 +54,19 @@ const ParticleB = () => {
 
 export default function Gemini() {
   const [inputValue, setInputValue] = useState('');
+  const [inputValue2, setInputValue2] = useState('');
   const [response, setResponse] = useState('');
 
   const input = (event) => {
     setInputValue(event.target.value);
   };
 
+  const input2 = (event) => {
+    setInputValue2(event.target.value);
+  };
+
   const submit = async () => {
-    const result = await callGemini(inputValue);
+    const result = await callGemini(inputValue+"\n"+inputValue2);
     setResponse(result);
   };
 
@@ -79,6 +85,15 @@ export default function Gemini() {
               }}     
               type="text" placeholder="Enter a question..." 
               value={inputValue} onChange={input} />
+            <input style=
+              {{ 
+              backgroundColor: 'lightgray', 
+              padding: '10px 20px', 
+              borderRadius: '5px', 
+              border: '1px solid gray' 
+              }}     
+              type="text" placeholder="Enter the code..." 
+              value={inputValue2} onChange={input2} />
             <button onClick={submit}>Submit</button>
           </section>
             <div className='response'>{response}</div>
