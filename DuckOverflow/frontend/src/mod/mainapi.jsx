@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import "./mapi.css";
 import quackSound from '../assets/quack.mp3';
-
+import {create_post } from '../mod/endpoints.js';
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "YOUR_GEMINI_API_KEY";
 
@@ -15,7 +15,8 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 async function callGemini(question) {
   const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
   const result = await model.generateContent(question);
-  return result.response.text;
+  const text = await result.response.text();
+  return text;
 }
 
 const ParticleB = () => {
@@ -66,8 +67,24 @@ export default function Gemini() {
   };
 
   const submit = async () => {
-    const result = await callGemini(inputValue+"\n"+inputValue2);
-    setResponse(result);
+    const audio = new Audio(quackSound);
+    audio.play();
+    audio.addEventListener('ended', async() => {try{const result = await callGemini(inputValue+"\n"+inputValue2);setResponse(result);
+      if(!result || result.trim() === "")
+      {
+        console.error("Post not created.");
+        return;
+      }
+      const title = inputValue || "Untitled Question";
+      console.log("Gemini Result:", result);
+      const postResult = await create_post(title, inputValue2, result);
+      console.log("Post created:", postResult);
+    } catch(error)
+      {
+        console.error("Error during AI call", error);
+      }
+    });
+    
   };
 
   return (
