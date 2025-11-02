@@ -4,6 +4,9 @@ import { useState } from 'react'
 import Gemini from './mod/mainapi.jsx'
 import Signup from './components/Signup.jsx'
 import Login from './components/Login.jsx';
+import QuackOverflow from './components/QuackOverflow.jsx';
+import Questions from './components/Questions.jsx';
+import PostDetails from './components/PostDetails.jsx';
 import Websocket from './components/test_websocket.jsx'
 
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -13,9 +16,11 @@ function App() {
     
     <Router>
       <Routes>
-        <Route path="/" element={<Gemini/>}/>
+        <Route path="/" element={<QuackOverflow/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/questions" element={<Questions/>}/>
+        <Route path="post/:id" element={<PostDetails/>}/>
         <Route path="/websocket" element={<Websocket/>}/> /* for testing websocket connection */
       </Routes>
     </Router>
