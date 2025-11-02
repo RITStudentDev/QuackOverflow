@@ -14,8 +14,8 @@ function App() {
     
     <Router>
       <Routes>
+        <Route path="/" element={<QuackOverflow/>}/>
         <Route path="/signup" element={<Signup/>}/>
-        <Route path="/mainapi" element={<Gemini/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/questions" element={<Questions/>}/>
         <Route path="/" element={<QuackOverflow/>}/>

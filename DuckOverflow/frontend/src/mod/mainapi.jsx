@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import "./mapi.css";
+import quackSound from '../assets/quack.mp3';
 
 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "YOUR_GEMINI_API_KEY";
 
 if (!API_KEY || API_KEY === "YOUR_GEMINI_API_KEY") {
   console.error("Error: Gemini API key not found. Please set VITE_GEMINI_API_KEY environment variable or replace 'YOUR_GEMINI_API_KEY' with your actual key.");
@@ -17,6 +18,40 @@ async function callGemini(question) {
   return result.response.text;
 }
 
+const ParticleB = () => {
+  const [particles, setParticles] = useState([]);
+
+  useEffect(() => {
+    const numParticles = 50;
+    const newParticles = Array.from({ length: numParticles }).map((_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      bottom: Math.random() * 100, 
+      duration: Math.random() * 5 + 5, 
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  return (
+    <div className="particler">
+      {particles.map((particle) => (
+        <div
+          key={particle.id}
+          className="particle"
+          style={{
+            left: `${Math.random() * 100}vw`, 
+            top: `${Math.random() * 100}vh`,  
+            '--bottom-pos': `${particle.bottom}vh`, 
+            animationDuration: `${particle.duration}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+
+
 export default function Gemini() {
   const [inputValue, setInputValue] = useState('');
   const [response, setResponse] = useState('');
@@ -25,18 +60,32 @@ export default function Gemini() {
     setInputValue(event.target.value);
   };
 
-  const submit = async () => {
-    const result = await callGemini(inputValue);
-    setResponse(result);
+  const submit = async () => { 
+    const audio = new Audio(quackSound); 
+    audio.play(); 
+    audio.addEventListener('ended', async() => {const result = await callGemini(inputValue); setResponse(result);});
   };
 
   return (
-    <div className="main">
-      <h1>DuckOverflow - Gemini AI</h1>
-      <input value={inputValue} onChange={input} />
-      <button onClick={submit}>Submit</button>
-      <div>{response}</div>
-    </div>
+    <main>
+      <ParticleB numParticles={125} />
+        <div className="main">
+          <section className='container'>
+            <h1>DuckOverflow</h1>
+            <input style=
+              {{ 
+              backgroundColor: 'lightgray', 
+              padding: '10px 20px', 
+              borderRadius: '5px', 
+              border: '1px solid gray' 
+              }}     
+              type="text" placeholder="Enter a question..." 
+              value={inputValue} onChange={input} />
+            <button onClick={submit}>Submit</button>
+          </section>
+            <div className='response'>{response}</div>
+        </div>
+    </main>
   );
 }
 
