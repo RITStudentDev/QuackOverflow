@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import "./mapi.css";
+import quackSound from '../assets/quack.mp3';
 
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
@@ -10,24 +11,25 @@ if (!API_KEY || API_KEY === "YOUR_GEMINI_API_KEY") {
 }
 
 const genAI = new GoogleGenerativeAI(API_KEY);
-
 async function callGemini(question) {
   const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
   const result = await model.generateContent(question);
   return result.response.text;
 }
 
-export default function Gemini() {
+export default function Gemini() 
+{
   const [inputValue, setInputValue] = useState('');
   const [response, setResponse] = useState('');
-
+  
   const input = (event) => {
     setInputValue(event.target.value);
   };
 
   const submit = async () => {
-    const result = await callGemini(inputValue);
-    setResponse(result);
+  const audio = new Audio(quackSound);
+  audio.play();
+  audio.addEventListener('ended', async() => {const result = await callGemini(inputValue); setResponse(result);});
   };
 
   return (
