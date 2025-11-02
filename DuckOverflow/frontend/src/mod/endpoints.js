@@ -41,4 +41,9 @@ export async function login_user(username, password) {
   return response.data;
 }
 
+export const create_post = async (title, question, answer) => {
+    const response = await api.post('create_post/', {title:title, question:question, answer:answer})
+    return response.data
+}
+
 
