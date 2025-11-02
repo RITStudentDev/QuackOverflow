@@ -1,9 +1,4 @@
-  .signup-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-  }
+
     .signup-form {
     background: #FBFBFB;
     padding: 2rem 2.5rem;

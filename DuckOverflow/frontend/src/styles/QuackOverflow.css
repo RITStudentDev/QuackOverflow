@@ -12,9 +12,10 @@
   justify-content: center;
   align-items: flex-start;
   height: 100vh;
-  display: flexbox;
-  justify-content: center;
-  align-items: center;
+  width:100vw;
+  display: flex;
+
+  overflow: hidden;
 }
 
 
@@ -22,12 +23,15 @@
 
 .greeting
 {
-    
-    /* margin-top: 15rem; */
+    top: 10vh;
     font-size: 3rem;
-    /* z-index: 1; */
     -webkit-text-stroke: 1px black;
     text-align:center;
 
     
+}
+
+.qButton {
+  margin-left: 30vh;
+  margin-top: 20vh;
 }
