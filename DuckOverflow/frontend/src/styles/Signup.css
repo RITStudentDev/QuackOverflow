@@ -1,11 +1,4 @@
-body {
-    background: wheat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
+
     .signup-form {
     background: #FBFBFB;
     padding: 2rem 2.5rem;
