@@ -20,6 +20,7 @@ export default function Login() {
 
 
     return (
+        <div className="login">
         <div className="login-container">
             
             <h2 className="login-title">Login</h2>
@@ -40,6 +41,7 @@ export default function Login() {
                 Login
             </button>
 
+        </div>
         </div>
     )
 
