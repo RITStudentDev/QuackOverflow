@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { get_posts } from "../mod/endpoints";
 import { useNavigate } from "react-router-dom";
+import '../styles/Questions.css'
 
 export default function Questions() {
     const [posts, setPosts] = useState([])

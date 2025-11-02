@@ -13,7 +13,6 @@ const Post = ({username, title, question, answer, time_created, likes, like_coun
                     <p>{question}</p>
                     <p>Answer: {answer}</p>
                 </div>
-                <h3>{like_count}</h3>
             </div>
         </div>
     )

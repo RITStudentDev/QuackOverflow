@@ -1,7 +1,9 @@
 .post-details-page {
+    margin-left: 28vw;
     background-color: #555;
     width: 50rem;
     height: fit-content;
     padding: 12px;
     border-radius: 20px;
+    border: 2px solid #fff;
 }
