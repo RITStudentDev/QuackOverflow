@@ -112,7 +112,7 @@ export default function Signup() {
         {error && <p className="signup-error">{error}</p>}
         {message && <p className="signup-message">{message}</p>}
       </form>
-      <button className="login-redirect-button" onClick={() => navigate("/login")}>Already have an account</button>
+      <button className="login-redirect-button" onClick={() => navigate("/login")}>Already Have An Account?</button>
     </div>
   );
 }
