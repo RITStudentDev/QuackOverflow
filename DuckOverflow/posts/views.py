@@ -8,64 +8,79 @@ from rest_framework.pagination import PageNumberPagination
 
 Custom_user = get_user_model()
 
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_post(request):
-    data = request.data
-    user = request.user
-
+    """
+    Creates a post linked to the currently authenticated user.
+    """
     try:
-        try:
-            user = Custom_user.objects.get(username=request.user)
-        except Custom_user.DoesNotExist:
-            return Response({'error':'user does not exist'})
-        
+        user = request.user
+
+        # Create the post
         post = Post.objects.create(
             user=user,
-            title=data.get('title'),
-            question=data.get('question'),
-            answer=data.get('answer'),
+            title=request.data.get('title'),
+            question=request.data.get('question'),
+            answer=request.data.get('answer'),
         )
 
-        serializer = PostSerializer(post, many=False)
+        serializer = PostSerializer(post)
+        return Response(serializer.data, status=201)
 
-        return Response(serializer.data)
     except Exception as e:
-        return Response({'error': str(e)})
+        return Response({'error': str(e)}, status=400)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_posts(request):
+    """
+    Returns all posts with pagination.
+    """
+    posts = Post.objects.all().order_by('-time_created') 
 
-    try:
-        user = Custom_user.objects.get(username=request.user.username)
-    except Custom_user.DoesNotExist:
-        return Response({'error':'user does not exist'})
-    
-    posts = Post.objects.all().order_by('time_created')
-    
     paginator = PageNumberPagination()
     paginator.page_size = 16
-    compiled_page = paginator.paginate_queryset(posts, request)
-    serializer = PostSerializer(compiled_page,many=True)
+    page = paginator.paginate_queryset(posts, request)
+    serializer = PostSerializer(page, many=True)
 
-    data = []
-
-    for post in serializer.data:
-        new_post = {**post}
-        data.append(new_post)
-
-
-
-    return paginator.get_paginated_response(data)
+    return paginator.get_paginated_response(serializer.data)
 
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_post(request, pk):
+    """
+    Returns a single post by ID.
+    """
     try:
         post = Post.objects.get(id=pk)
-        serializer = PostSerializer(post, many=False)
+        serializer = PostSerializer(post)
         return Response(serializer.data)
     except Post.DoesNotExist:
         return Response({'error': 'Post not found'}, status=404)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def toggle_like(request):
+
+    try:
+        post_id = request.data.get('id')
+        post = Post.objects.get(id=post_id)
+        user = request.user
+
+        # Toggle like
+        if user in post.likes.all():
+            post.likes.remove(user)
+            return Response({'now_liked': False})
+        else:
+            post.likes.add(user)
+            return Response({'now_liked': True})
+
+    except Post.DoesNotExist:
+        return Response({'error': 'Post does not exist'}, status=404)
+    except Exception as e:
+        return Response({'error': str(e)}, status=400)

@@ -5,7 +5,7 @@
   background-image: url('../assets/duckHero.png');
   background-size: 400px;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left;
   background-color: #ffffabff;
   margin: 0;
   padding: 0;
@@ -23,7 +23,7 @@
 
 .greeting
 {
-    top: 10vh;
+    margin-top: 40vh;
     font-size: 3rem;
     -webkit-text-stroke: 1px black;
     text-align:center;
@@ -32,6 +32,6 @@
 }
 
 .qButton {
-  margin-left: 30vh;
-  margin-top: 20vh;
+  margin-left: 45vh;
+  margin-top: -5vh;
 }

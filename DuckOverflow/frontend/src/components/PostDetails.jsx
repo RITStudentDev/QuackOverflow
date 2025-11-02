@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { get_post } from "../mod/endpoints";
+import Post from "./post";
+import '../styles/PostDetails.css'
 
 export default function PostDetails() {
     const { id } = useParams();
@@ -33,11 +35,15 @@ export default function PostDetails() {
 
     return (
         <div className="post-details-page">
-            <h1>{post.title || "Untitled"}</h1>
-            <p><strong>Question:</strong> {post.question || "No question provided"}</p>
-            <p><strong>Answer:</strong> {post.answer || "No answer provided"}</p>
-            <p><strong>Author:</strong> {post.user?.username || "Unknown"}</p>
-            <p><strong>Created At:</strong> {post.time_created ? new Date(post.time_created).toLocaleString() : "Unknown"}</p>
+            <Post
+              username={post.user?.username || "Unknown"}
+              title={post.title}
+              question={post.question}
+              answer={post.answer}
+              time_created={post.time_created}
+              likes={post.likes}
+              like_count={post.like_count}
+            />
         </div>
     );
 }
