@@ -46,7 +46,6 @@ def get_posts(request):
     
     paginator = PageNumberPagination()
     paginator.page_size = 16
-
     compiled_page = paginator.paginate_queryset(posts, request)
     serializer = PostSerializer(compiled_page,many=True)
 
