@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import "./mapi.css";
+import quackSound from '../assets/quack.mp3';
 
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "YOUR_GEMINI_API_KEY";
@@ -59,9 +60,10 @@ export default function Gemini() {
     setInputValue(event.target.value);
   };
 
-  const submit = async () => {
-    const result = await callGemini(inputValue);
-    setResponse(result);
+  const submit = async () => { 
+    const audio = new Audio(quackSound); 
+    audio.play(); 
+    audio.addEventListener('ended', async() => {const result = await callGemini(inputValue); setResponse(result);});
   };
 
   return (
