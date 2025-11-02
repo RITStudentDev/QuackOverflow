@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../styles/QuackOverflow.css';
-import duckImage from '../assets/duck.png';
+import duckImage from '../assets/duckHero.png';
 // import App from './App.jsx';
 
 export default function QuackOverflow()
