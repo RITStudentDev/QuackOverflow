@@ -1,0 +1,15 @@
+.data-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.manage-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user-data{
+    display: flex;
+    flex-direction: row;
+}

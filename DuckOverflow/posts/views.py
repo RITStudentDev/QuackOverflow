@@ -69,3 +69,26 @@ def get_post(request, pk):
         return Response(serializer.data)
     except Post.DoesNotExist:
         return Response({'error': 'Post not found'}, status=404)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def toggle_like(request):
+    try:
+        try:
+            post = Post.objects.get(id=request.data['id'])
+        except Post.DoesNotExist:
+            return Response({'error': 'post does not exist'})
+        
+        try:
+            user = Custom_user.objects.get(username=request.data['username'])
+        except Custom_user.DoesNotExist:
+            return Response({'error':'user does not exist'})
+        
+        if user in post.likes.add():
+            post.likes.remove(user)
+            return Response({'now_liked': False})
+        else:
+            post.likes.add(user)
+            return Response({'now_liked':True})
+    except:
+        return Response({'error': 'failed to like post'})
