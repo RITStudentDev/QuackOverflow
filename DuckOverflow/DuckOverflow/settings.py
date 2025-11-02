@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'users',
     'posts',
     '_temporaryhome',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +63,7 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = "myproject.asgi.application" #defining the ASGI server
 WSGI_APPLICATION = 'DuckOverflow.wsgi.application'
 
 
