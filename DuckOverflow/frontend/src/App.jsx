@@ -20,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/questions" element={<Questions/>}/>
         <Route path="post/:id" element={<PostDetails/>}/>
+        <Route path="mainapi" element={<Gemini/>}/>
       </Routes>
     </Router>
 
