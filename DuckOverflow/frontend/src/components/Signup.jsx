@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import '../styles/Signup.css';
+
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -7,7 +9,7 @@ export default function Signup() {
     password: "",
     password2: "",
   });
-
+  const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -53,6 +55,7 @@ export default function Signup() {
   };
 
   return (
+    <div className="signup-container">
       <form onSubmit={handleSubmit} className="signup-form">
         <h2 className="signup-title">Sign Up</h2>
 
@@ -91,5 +94,7 @@ export default function Signup() {
         {error && <p className="signup-error">{error}</p>}
         {message && <p className="signup-message">{message}</p>}
       </form>
+      <button className="login-redirect-button" onClick={() => navigate("/login")}>Already have an account</button>
+    </div>
   );
 }
