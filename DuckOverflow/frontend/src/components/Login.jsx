@@ -12,7 +12,7 @@ export default function Login() {
     const handleLogin = async () => {
         const data = await login_user(username, password);
         if (data.tokenGenerated) {
-            navigate('/');
+            navigate('/mainapi');
         } else {
             alert(data.error || 'Invalid username or password');
         }
