@@ -13,7 +13,10 @@ function App() {
     
     <Router>
       <Routes>
-        <Route path="/" element={<Gemini/>}/>
+        <Route path="/" element={<QuackOverflow/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/gemini" element={<Gemini/>}/>
       </Routes>
     </Router>
 

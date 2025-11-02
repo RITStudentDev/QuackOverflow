@@ -24,9 +24,4 @@ export default function QuackOverflow()
 
 
 
-const root = createRoot(document.getElementById('root'));
-root.render(
-  <StrictMode>
-    <QuackOverflow />
-  </StrictMode>,
-);
+
