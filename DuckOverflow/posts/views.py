@@ -12,9 +12,6 @@ Custom_user = get_user_model()
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_post(request):
-    """
-    Creates a post linked to the currently authenticated user.
-    """
     try:
         user = request.user
 
@@ -52,9 +49,7 @@ def get_posts(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_post(request, pk):
-    """
-    Returns a single post by ID.
-    """
+
     try:
         post = Post.objects.get(id=pk)
         serializer = PostSerializer(post)

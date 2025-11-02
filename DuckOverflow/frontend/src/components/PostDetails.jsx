@@ -36,7 +36,7 @@ export default function PostDetails() {
     return (
         <div className="post-details-page">
             <Post
-              username={post.user?.username || "Unknown"}
+              username={post.username}
               title={post.title}
               question={post.question}
               answer={post.answer}

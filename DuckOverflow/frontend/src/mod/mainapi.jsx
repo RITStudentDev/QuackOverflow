@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import "./mapi.css";
 import quackSound from '../assets/quack.mp3';
 import { create_post } from '../mod/endpoints.js';
 import { useNavigate } from 'react-router-dom';
-
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "YOUR_GEMINI_API_KEY";
 
@@ -59,15 +58,10 @@ export default function Gemini() {
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
   const [response, setResponse] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const input = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const input2 = (event) => {
-    setInputValue2(event.target.value);
-  };
+  const input = (event) => setInputValue(event.target.value);
+  const input2 = (event) => setInputValue2(event.target.value);
 
   const submit = async () => {
     const audio = new Audio(quackSound);
@@ -85,8 +79,11 @@ export default function Gemini() {
 
         const title = inputValue || "Untitled Question";
         console.log("Gemini Result:", result);
+
+        // Call create_post without manually passing a token (cookies handle auth)
         const postResult = await create_post(title, inputValue2, result);
         console.log("Post created:", postResult);
+
       } catch (error) {
         console.error("Error during AI call", error);
       }
